@@ -1,4 +1,35 @@
 <div class="container my-5">
+  <div class="d-flex justify-content-end mb-4">
+    <button class="btn btn-success" (click)="openCreateForm()">+ Create Blog</button>
+  </div>
+
+  <div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="blogModalLabel">{{ isEdit ? 'Update Blog' : 'Create Blog' }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="cancelForm()" aria-label="Close"></button>
+        </div>
+        <form (ngSubmit)="onSubmit()">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input id="title" class="form-control" [(ngModel)]="formModel.title" name="title" required />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" class="form-control" [(ngModel)]="formModel.description" name="description" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" (click)="cancelForm()">Cancel</button>
+            <button class="btn btn-primary" type="submit">{{ isEdit ? 'Update' : 'Create' }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" *ngFor="let blog of blogs">
       <div class="card h-100 shadow-sm">
@@ -6,8 +37,9 @@
           <h5 class="card-title text-primary">{{ blog.title }}</h5>
           <p class="card-text text-muted">{{ blog.description }}</p>
         </div>
-        <div class="card-footer bg-transparent border-top-0">
-          <button class="btn btn-outline-primary btn-sm">Read More</button>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <button class="btn btn-outline-primary btn-sm" (click)="editBlog(blog)">Edit</button>
+          <button class="btn btn-outline-danger btn-sm" (click)="deleteBlog(blog.id!)">Delete</button>
         </div>
       </div>
     </div>

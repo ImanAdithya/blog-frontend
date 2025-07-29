@@ -27,11 +27,11 @@ export class BlogService {
   }
 
   updateBlog(blog : BlogModel,userId :number): Observable<any> {
-    return this._commonHttpService.RequestUPDATE(blog,this._globalParamService.primaryURL + '/blog/',userId);
+    return this._commonHttpService.RequestUPDATE(blog,this._globalParamService.primaryURL + '/blog',userId);
   }
 
   deleteBlog(userId :number): Observable<any> {
-    return this._commonHttpService.RequestDELETE(this._globalParamService.primaryURL + '/blog/',userId);
+    return this._commonHttpService.RequestDELETE(this._globalParamService.primaryURL + '/blog',userId);
   }
   
 }
