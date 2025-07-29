@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 export class CommonHttpService {
   constructor(private http: HttpClient) {}
 
-  // 🔐 Get token from storage
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     return new HttpHeaders({
@@ -25,6 +24,17 @@ export class CommonHttpService {
       withCredentials: true,
     });
   }
+
+  RequestGETById(url: string, id: string | number): Observable<any> {
+  const headers = this.getAuthHeaders();
+  const fullUrl = `${url}/${id}`;
+
+    return this.http.get<any>(fullUrl, {
+      headers,
+      withCredentials: true,
+    });
+  }
+
 
   RequestPOST(jsonData: any, url: string): Observable<any> {
     const headers = this.getAuthHeaders();

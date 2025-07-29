@@ -17,4 +17,8 @@ export class BlogService {
     return this._commonHttpService.RequestGET(this._globalParamService.primaryURL + '/blog');
   }
 
+  getBlogByUserId(userId : number): Observable<any> {
+    return this._commonHttpService.RequestGETById(this._globalParamService.primaryURL + '/blog/user', userId);
+  }
+
 }
