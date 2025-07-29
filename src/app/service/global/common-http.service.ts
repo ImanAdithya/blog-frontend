@@ -59,24 +59,26 @@ export class CommonHttpService {
     });
   }
 
-  RequestUPDATE(jsonData: any, url: string): Observable<any> {
+  RequestUPDATE(jsonData: any, url: string, id: number | string): Observable<any> {
     const headers = this.getAuthHeaders();
     const body = JSON.stringify(jsonData);
+    const fullUrl = `${url}/${id}`;
 
-    return this.http.put<any>(url, body, {
+    return this.http.put<any>(fullUrl, body, {
       headers,
       withCredentials: true,
     });
   }
 
-  RequestDELETE(jsonData: any, url: string): Observable<any> {
-    const headers = this.getAuthHeaders();
-    const body = JSON.stringify(jsonData);
 
-    return this.http.request<any>('DELETE', url, {
+  RequestDELETE(url: string, id: number | string): Observable<any> {
+    const headers = this.getAuthHeaders();
+    const fullUrl = `${url}/${id}`;
+  
+    return this.http.delete<any>(fullUrl, {
       headers,
-      body,
       withCredentials: true,
     });
   }
+
 }
