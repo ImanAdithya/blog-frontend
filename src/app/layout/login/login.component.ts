@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserModel } from 'src/app/model/userModel';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginData = {
+  loginData : UserModel = {
     username: '',
     password: ''
   };
@@ -18,19 +19,27 @@ export class LoginComponent {
     private readonly _authService: AuthService,
   ) {}
 
-onLogin() {
-  this._authService.login(this.loginData).subscribe({
-    next: (res) => {
-      console.log('Login Success:', res.data.access_token);
-      localStorage.setItem("token",res.data.access_token)
-      this.router.navigate(['/blog']);
-    },
-    error: (err) => {
-      console.error('Login Error:', err);
-      alert('Login failed');
-    }
-  });
-}
+  onLogin() {
 
+   if (!this.loginData.username || !this.loginData.password) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    this._authService.login(this.loginData).subscribe({
+      next: (res) => {
+        console.log('Login Success:', res.data.access_token);
+        localStorage.setItem("token",res.data.access_token);
+        localStorage.setItem("userId",res.data.userId);
+        localStorage.setItem("username",res.data.username)
+
+        this.router.navigate(['/blog']);
+      },
+      error: (err) => {
+        console.error('Login Error:', err);
+        alert('Login failed');
+      }
+    });
+}
 
 }
