@@ -3,6 +3,7 @@
 This is the frontend of a Blog Management Application developed using **Angular 16**. It allows users to log in, create, view, update, and delete blog posts. Authentication is handled via JWT, and blogs are displayed user-wise. Backend is powered by NestJS.
 
 ---
+Figma : https://www.figma.com/design/xZdvMZGXwbA0VBb6NlhvbF/Untitled?node-id=0-1&t=hDfc2cHvH9spacKn-1
 
 ## 🔧 Tech Stack
 
