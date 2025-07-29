@@ -37,9 +37,9 @@
           <h5 class="card-title text-primary">{{ blog.title }}</h5>
           <p class="card-text text-muted">{{ blog.description }}</p>
         </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+        <div class="card-footer bg-transparent border-top-0 d-flex">
           <button class="btn btn-outline-primary btn-sm" (click)="editBlog(blog)">Edit</button>
-          <button class="btn btn-outline-danger btn-sm" (click)="deleteBlog(blog.id!)">Delete</button>
+          <button class="btn btn-outline-danger btn-sm ms-2" (click)="deleteBlog(blog.id!)">Delete</button>
         </div>
       </div>
     </div>
