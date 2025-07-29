@@ -33,5 +33,9 @@ export class BlogService {
   deleteBlog(userId :number): Observable<any> {
     return this._commonHttpService.RequestDELETE(this._globalParamService.primaryURL + '/blog',userId);
   }
-  
+
+  searchBlogByTitle(title: string): Observable<any> {
+    return this._commonHttpService.RequestSearch(this._globalParamService.primaryURL + '/blog/search', { title });
+  }
+
 }

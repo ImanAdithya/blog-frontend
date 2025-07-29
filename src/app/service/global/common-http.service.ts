@@ -81,4 +81,17 @@ export class CommonHttpService {
     });
   }
 
+  RequestSearch(url: string, queryParams: { [key: string]: any }): Observable<any> {
+    const headers = this.getAuthHeaders();
+  
+    const queryString = new URLSearchParams(queryParams).toString();
+    const fullUrl = `${url}?${queryString}`;
+  
+   return this.http.get<any>(fullUrl, {
+      headers,
+      withCredentials: true,
+    });
+  } 
+
+
 }

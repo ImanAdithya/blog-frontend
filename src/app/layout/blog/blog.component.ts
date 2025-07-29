@@ -11,22 +11,24 @@ declare var bootstrap: any;
 })
 export class BlogComponent implements OnInit {
   blogs: BlogModelCreate[] = [];
+  filteredBlogs: BlogModelCreate[] = [];
   formModel: BlogModelCreate = {
     id: 0,
     title: '',
     description: '',
     userId: 0,
   };
+  searchTitle: string = '';
   isEdit = false;
   modalRef: any;
   userId: number = 0;
-  username:string|null=''
+  username: string | null = '';
 
-  constructor(private blogService: BlogService,private authService :AuthService) {}
+  constructor(private blogService: BlogService, private authService: AuthService) {}
 
   ngOnInit(): void {
     const storedId = localStorage.getItem('userId');
-    this.username=localStorage.getItem("username");
+    this.username = localStorage.getItem('username');
     this.userId = storedId ? +storedId : 0;
     if (this.userId) this.getBlogs();
   }
@@ -34,8 +36,22 @@ export class BlogComponent implements OnInit {
   getBlogs() {
     this.blogService.getBlogByUserId(this.userId).subscribe((res) => {
       this.blogs = res.data || res;
+      this.filteredBlogs = [...this.blogs];
     });
   }
+
+  filterBlogs() {
+    const search = this.searchTitle.toLowerCase().trim();
+    if (!search) {
+      this.filteredBlogs = this.blogs;
+      return;
+    }
+
+    this.filteredBlogs = this.blogs.filter(blog =>
+      blog.title.toLowerCase().includes(search)
+    );
+  }
+
 
   openCreateForm() {
     this.isEdit = false;
@@ -52,22 +68,24 @@ export class BlogComponent implements OnInit {
   deleteBlog(id: number) {
     if (confirm('Are you sure to delete this blog?')) {
       this.blogService.deleteBlog(id).subscribe(() => this.getBlogs());
-      alert("Delete Success Blog....");
+      alert('Blog deleted successfully!');
     }
   }
 
   onSubmit() {
     if (!this.formModel.title || !this.formModel.description) {
-    alert("Feilds cannot be empty!..");
-    return;
+      alert('Fields cannot be empty!');
+      return;
     }
+
     if (this.isEdit) {
       this.blogService.updateBlog(this.formModel, this.formModel.id!).subscribe(() => this.getBlogs());
-      alert("Succuss Update Blog....");
+      alert('Blog updated successfully!');
     } else {
       this.blogService.createBlog(this.formModel).subscribe(() => this.getBlogs());
-      alert("Blog Create Succuss....");
+      alert('Blog created successfully!');
     }
+
     this.closeModal();
   }
 
@@ -88,7 +106,7 @@ export class BlogComponent implements OnInit {
     this.modalRef?.hide();
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 }
