@@ -5,11 +5,21 @@
       aria-controls="navbarButtons" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <div class="collapse navbar-collapse justify-content-end" id="navbarButtons">
-      <div class="d-flex gap-2">
-        <button routerLink="/login"  class="btn btn-outline-primary">Sign In</button>
-        <button routerLink="/signup"  class="btn btn-primary text-white">Sign Up</button>
+      <div class="d-flex gap-2 align-items-center">
+
+        <ng-container *ngIf="isAuthenticated; else guestButtons">
+          <span class="text-primary fw-semibold me-3">Welcome, {{ username }}</span>
+          <button class="btn btn-outline-danger btn-sm" (click)="logout()">Logout</button>
+        </ng-container>
+
+
+        <ng-template #guestButtons>
+          <button routerLink="/login" class="btn btn-outline-primary">Sign In</button>
+          <button routerLink="/signup" class="btn btn-primary text-white">Sign Up</button>
+        </ng-template>
+
       </div>
     </div>
   </div>

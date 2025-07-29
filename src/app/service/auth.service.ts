@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CommonHttpService } from './global/common-http.service';
 import { GlobalParameterService } from './global/global-parameter.service';
 import { UserModel } from '../model/userModel';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+
+   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  isLoggedIn$ = this.isLoggedInSubject.asObservable(); // observable to subscribe
 
  constructor(
     private readonly _commonHttpService: CommonHttpService,
@@ -27,7 +30,10 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("token");
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
     this.router.navigate(['/login']);
+    this.isLoggedInSubject.next(false); 
   }
 
   isLoggedIn(){
@@ -36,5 +42,13 @@ export class AuthService {
 
   getToken(){
     localStorage.getItem("token");
+  }
+
+  hasToken(): boolean {
+    return !!localStorage.getItem('token');
+  }
+  
+  triggerLoginState(): void {
+    this.isLoggedInSubject.next(true);
   }
 }
