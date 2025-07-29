@@ -1,27 +1,105 @@
-# BlogFrontend
+# 📝 Angular Blog Application (Frontend)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+This is the frontend of a Blog Management Application developed using **Angular 16**. It allows users to log in, create, view, update, and delete blog posts. Authentication is handled via JWT, and blogs are displayed user-wise. Backend is powered by NestJS.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🔧 Tech Stack
 
-## Code scaffolding
+- Angular 16
+- TypeScript
+- Bootstrap 5
+- RxJS
+- JWT (Authentication)
+- RESTful API Integration (NestJS backend)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🚀 Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- ✅ User authentication with JWT (login/signup)
+- 📝 Create, edit, and delete blog posts
+- 👤 View blogs per user
+- 💬 Responsive UI with Bootstrap
+- 🔒 Auth guard and route protection
+- 📦 Service-based architecture
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📁 Folder Structure
 
-## Running end-to-end tests
+```
+src/
+├── app/
+│   ├── model/            # Blog models
+│   ├── service/          # HTTP services
+│   ├── layout/           # Blog components
+│   ├── auth/             # Auth components and services
+│   └── app-routing.module.ts
+│   └── app.module.ts
+├── assets/
+└── index.html
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🖥️ Setup Instructions
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/angular-blog-frontend.git
+   cd angular-blog-frontend
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Run the Angular app:**
+
+   ```bash
+   ng serve
+   ```
+
+   Visit: `http://localhost:4200/`
+
+4. **Connect to Backend (NestJS)**  
+   Ensure your backend (e.g., `http://localhost:3000`) is running and set the correct base URL in your `GlobalParameterService`.
+
+---
+
+## 🔐 Auth Flow
+
+- JWT tokens are stored in localStorage.
+- AuthGuard restricts access to blog management routes.
+- Interceptors automatically attach tokens to authorized API requests.
+
+---
+
+## 📷 Screenshots
+
+> _You can add screenshots here for better visual understanding._
+
+---
+
+## 🧪 Future Improvements
+
+- Pagination & search
+- Blog image support
+- Comments system
+- Profile management
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+- **Your Name** – [@yourGitHub](https://github.com/your-username)
