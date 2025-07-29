@@ -19,11 +19,13 @@ export class BlogComponent implements OnInit {
   isEdit = false;
   modalRef: any;
   userId: number = 0;
+  username:string|null=''
 
   constructor(private blogService: BlogService) {}
 
   ngOnInit(): void {
     const storedId = localStorage.getItem('userId');
+    this.username=localStorage.getItem("username");
     this.userId = storedId ? +storedId : 0;
     if (this.userId) this.getBlogs();
   }
