@@ -10,7 +10,7 @@ export class CommonHttpService {
 
   // 🔐 Get token from storage
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('AccessToken');
+    const token = localStorage.getItem('token');
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token ? `Bearer ${token}` : '',

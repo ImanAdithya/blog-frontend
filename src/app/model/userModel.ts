@@ -1,4 +1,4 @@
-export interface Blog {
+export interface UserModel {
   username: string;
   password: string;
 }

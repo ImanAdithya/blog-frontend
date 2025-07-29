@@ -4,11 +4,27 @@
     <form>
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" id="username" class="form-control" placeholder="Enter username">
+        <input
+          type="text"
+          id="username"
+          class="form-control"
+          placeholder="Enter username"
+          [(ngModel)]="loginData.username"
+          name="username"
+          required
+        />
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Enter password">
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Enter password"
+          [(ngModel)]="loginData.password"
+          name="password"
+          required
+        />
       </div>
       <button type="button" class="btn btn-primary w-100" (click)="onLogin()">Login</button>
     </form>
