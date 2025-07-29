@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogModelCreate } from 'src/app/model/BlogModelCreate';
+import { AuthService } from 'src/app/service/auth.service';
 import { BlogService } from 'src/app/service/blog.service';
 
 declare var bootstrap: any;
@@ -21,7 +22,7 @@ export class BlogComponent implements OnInit {
   userId: number = 0;
   username:string|null=''
 
-  constructor(private blogService: BlogService) {}
+  constructor(private blogService: BlogService,private authService :AuthService) {}
 
   ngOnInit(): void {
     const storedId = localStorage.getItem('userId');
@@ -85,5 +86,9 @@ export class BlogComponent implements OnInit {
 
   closeModal() {
     this.modalRef?.hide();
+  }
+
+  logout(){
+    this.authService.logout();
   }
 }
