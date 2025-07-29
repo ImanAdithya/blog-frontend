@@ -1,20 +1,42 @@
 <div class="container my-5">
-  <div class="p-5 text-center rounded-4 mb-5" style="background: linear-gradient(135deg, #e0f0ff, #f4faff);">
+  <div
+    class="p-5 text-center rounded-4 mb-5"
+    style="background: linear-gradient(135deg, #e0f0ff, #f4faff);"
+  >
     <h1 class="fw-bold text-primary mb-3">Welcome to the Blog Hub</h1>
     <p class="lead text-secondary">
       Discover inspiring stories, expert insights, and the latest trends—crafted by passionate voices in our community.
     </p>
   </div>
 
+  <!-- 🔍 Search Bar -->
+  <div class="d-flex justify-content-end mb-4">
+    <input
+      type="text"
+      class="form-control w-50"
+      placeholder="Search by title..."
+      [(ngModel)]="searchTitle"
+      (input)="filterBlogs()"
+    />
+  </div>
+
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="col" *ngFor="let blog of blogs">
+    <div class="col" *ngFor="let blog of filteredBlogs">
       <div class="card h-100 border-0 shadow-sm rounded-4 blog-card hover-shadow">
         <div class="card-body">
           <h5 class="card-title text-dark fw-semibold">{{ blog.title }}</h5>
-          <p class="card-text text-muted">{{ blog.description }}</p>
+          <p class="card-text text-muted">
+            {{ expandedBlogId === blog.id ? blog.description : (blog.description | slice: 0:100) + '...' }}
+          </p>
         </div>
         <div class="card-footer bg-transparent border-0 text-end">
-          <button class="btn btn-sm btn-primary px-3">Read More</button>
+          <button
+            class="btn btn-sm btn-primary px-3"
+            *ngIf="blog.id !== undefined"
+            (click)="toggleReadMore(blog.id)"
+          >
+             {{ expandedBlogId === blog.id ? 'Show Less' : 'Read More' }}
+          </button>
         </div>
       </div>
     </div>
