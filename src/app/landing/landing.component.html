@@ -1,1 +1,15 @@
-<p>landing works!</p>
+<div class="container my-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let blog of blogs">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ blog.title }}</h5>
+          <p class="card-text text-muted">{{ blog.description }}</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <button class="btn btn-outline-primary btn-sm">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
