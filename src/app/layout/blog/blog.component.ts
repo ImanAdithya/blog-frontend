@@ -54,6 +54,10 @@ export class BlogComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.formModel.title || !this.formModel.description) {
+    alert("Feilds cannot be empty!..");
+    return;
+    }
     if (this.isEdit) {
       this.blogService.updateBlog(this.formModel, this.formModel.id!).subscribe(() => this.getBlogs());
       alert("Succuss Update Blog....");
