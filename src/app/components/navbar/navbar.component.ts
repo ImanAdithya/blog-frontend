@@ -6,27 +6,7 @@ import { AuthService } from 'src/app/service/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  isAuthenticated = false;
-  username: string | null = '';
+export class NavbarComponent {
 
-  constructor(private readonly _authService: AuthService) {}
-
-  ngOnInit(): void {
-    this.checkAuthStatus();
-  }
-
-  checkAuthStatus(): void {
-    this.isAuthenticated = this._authService.isLoggedIn();
-    if (this.isAuthenticated) {
-      this.username = localStorage.getItem('username');
-    } else {
-      this.username = '';
-    }
-  }
-
-  logout(): void {
-    this._authService.logout();
-    this.checkAuthStatus(); 
-  }
+  constructor() {}
 }

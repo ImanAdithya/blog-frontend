@@ -33,7 +33,6 @@ export class LoginComponent {
         localStorage.setItem("token",res.data.access_token);
         localStorage.setItem("userId",res.data.userId);
         localStorage.setItem("username",res.data.username)
-        this._authService.triggerLoginState();
         this.router.navigate(['/blog']);
 
       },

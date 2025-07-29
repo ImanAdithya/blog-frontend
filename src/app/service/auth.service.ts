@@ -11,9 +11,6 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-  isLoggedIn$ = this.isLoggedInSubject.asObservable(); // observable to subscribe
-
  constructor(
     private readonly _commonHttpService: CommonHttpService,
     private readonly _globalParamService: GlobalParameterService,
@@ -33,7 +30,6 @@ export class AuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
     this.router.navigate(['/login']);
-    this.isLoggedInSubject.next(false); 
   }
 
   isLoggedIn(){
@@ -47,9 +43,5 @@ export class AuthService {
 
   hasToken(): boolean {
     return !!localStorage.getItem('token');
-  }
-  
-  triggerLoginState(): void {
-    this.isLoggedInSubject.next(true);
   }
 }

@@ -8,19 +8,10 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarButtons">
       <div class="d-flex gap-2 align-items-center">
-
-        <!-- Logged In -->
-        <ng-container *ngIf="isAuthenticated; else guestButtons">
-          <span class="text-primary fw-semibold me-3">Welcome, {{ username }}</span>
-          <button class="btn btn-outline-danger btn-sm" (click)="logout()">Logout</button>
-        </ng-container>
-
-        <!-- Not Logged In -->
-        <ng-template #guestButtons>
+        <div>
           <button routerLink="/login" class="btn btn-outline-primary">Sign In</button>
-          <button routerLink="/signup" class="btn btn-primary text-white">Sign Up</button>
-        </ng-template>
-
+          <button routerLink="/signup" class="btn btn-primary text-white ms-2">Sign Up</button>
+        </div>
       </div>
     </div>
   </div>
