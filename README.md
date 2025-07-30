@@ -16,34 +16,6 @@ Figma : https://www.figma.com/design/xZdvMZGXwbA0VBb6NlhvbF/Untitled?node-id=0-1
 
 ---
 
-## 🚀 Features
-
-- ✅ User authentication with JWT (login/signup)
-- 📝 Create, edit, and delete blog posts
-- 👤 View blogs per user
-- 💬 Responsive UI with Bootstrap
-- 🔒 Auth guard and route protection
-- 📦 Service-based architecture
-
----
-
-## 📁 Folder Structure
-
-```
-src/
-├── app/
-│   ├── model/            # Blog models
-│   ├── service/          # HTTP services
-│   ├── layout/           # Blog components
-│   ├── auth/             # Auth components and services
-│   └── app-routing.module.ts
-│   └── app.module.ts
-├── assets/
-└── index.html
-```
-
----
-
 ## 🖥️ Setup Instructions
 
 1. **Clone the repository:**
@@ -72,6 +44,31 @@ src/
 
 ---
 
+## 🚀 Features
+
+- ✅ User authentication with JWT (login/signup)
+- 📝 Create, edit, and delete blog posts
+- 👤 View blogs per user
+- 💬 Responsive UI with Bootstrap
+- 🔒 Auth guard and route protection
+- 📦 Service-based architecture
+
+---
+
+## 📁 Folder Structure
+
+```
+src/
+├── app/
+│   ├── model/            # Blog models
+│   ├── service/          # HTTP services
+│   ├── layout/           # Blog components
+│   ├── auth/             # Auth components and services
+│   └── app-routing.module.ts
+│   └── app.module.ts
+├── assets/
+└── index.html
+```
 ## 🔐 Auth Flow
 
 - JWT tokens are stored in localStorage.
