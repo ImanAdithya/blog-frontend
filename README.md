@@ -22,7 +22,7 @@ Figma : https://www.figma.com/design/xZdvMZGXwbA0VBb6NlhvbF/Untitled?node-id=0-1
 
    ```bash
   [ git clone https://github.com/your-username/angular-blog-frontend.git](https://github.com/ImanAdithya/blog-frontend.git)
-   ```
+  ---
    cd angular-blog-frontend
    ```
 
